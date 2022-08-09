@@ -46,6 +46,81 @@ function solve(board) {
         return board
 
     } else {
-
+        const options = nextBoards(board)
+        const validBoards = keepValidOnly(options)
+        return findSolution(validBoards)
     }
+}
+
+function findSolution(boards) {
+    if(boards.length < 1) {
+        return false
+    } else {
+        //Backtrack search
+        let frst = boards.shift()
+        let tryPath = solve(frst)
+        if(tryPath != false) {
+            return tryPath
+        } else { // Abandon and move on to next board
+            return findSolution(boards)
+        }
+    }
+}
+
+function solved(board) {
+    for(let i = 0 ; i < 9 ; i++) {
+        for(let j = 0 ; j < 9 ; j++) {
+            if(board[i][j] === null) {
+                return false
+            }
+        }
+    }
+    return true
+}
+
+function nextBoards(board) {
+    let f = []
+    const empty = findEmptySqr(board)
+    if(empty != undefined) {
+        const y = empty[0]
+        const x = empty[1]
+        for(let i = 1 ; i <= 9 ; i++) {
+            let newBoard = [...board]
+            let row = [...newBoard[y]]
+            row[x] = i
+            newBoard[y] = row
+            f.push(newBoard)
+        }
+    }
+    return f
+}
+
+function findEmptySqr(board) {
+    for(let i = 0 ; i < 9 ; i++) {
+        for(let j = 0 ; j < 9 ; j++) {
+            if(board[i][j] === null) {
+                return [i,j];
+            }
+        }
+    }
+}
+
+function keepValidOnly(boards) {
+    return boards.filter((b) => validBoard(b))
+}
+
+function validBoard(board) {
+    return goodRow(board) && goodCol(board) && goodInside(board)
+}
+
+function goodRow(board) {
+
+}
+
+function goodCol(board) {
+
+}
+
+function goodInside() {
+
 }
