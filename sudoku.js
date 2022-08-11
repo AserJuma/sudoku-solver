@@ -11,6 +11,7 @@ const alpha = [
     [e,e,e,e,e,e,e,e,e],
     [e,e,e,e,e,e,e,e,e]
 ]
+
 //True case
 const bd_easy = [ // Number 25
     [e,e,4  ,1,e,3, 7,5,e],
@@ -59,7 +60,7 @@ function findSolution(boards) {
         //Backtrack search
         let frst = boards.shift()
         let tryPath = solve(frst)
-        if(tryPath != false) {
+        if(tryPath !== false) {
             return tryPath
         } else { // Abandon and move on to next board
             return findSolution(boards)
@@ -81,7 +82,7 @@ function solved(board) {
 function nextBoards(board) {
     let f = []
     const empty = findEmptySqr(board)
-    if(empty != undefined) {
+    if(empty !== undefined) {
         const y = empty[0]
         const x = empty[1]
         for(let i = 1 ; i <= 9 ; i++) {
@@ -99,7 +100,7 @@ function findEmptySqr(board) {
     for(let i = 0 ; i < 9 ; i++) {
         for(let j = 0 ; j < 9 ; j++) {
             if(board[i][j] === null) {
-                return [i,j];
+                return [i,j]
             }
         }
     }
@@ -114,13 +115,56 @@ function validBoard(board) {
 }
 
 function goodRow(board) {
-
+    for(let i = 0; i < 9 ; i++){
+        let current = []
+        for (let j = 0; i < 9; j++) {
+            if(current.includes(board[i][j])) {
+                return false
+            } else if (board[i][j] != null){
+                current.push(board[i][j])
+            }
+        }
+    }
+    return true
 }
 
 function goodCol(board) {
-
+    for(let i = 0; i < 9 ; i++){
+        let current = []
+        for (let j = 0; j < 9; j++) {
+            if(current.includes(board[j][i])) {
+                return false
+            } else if (board[j][i] != null){
+                current.push(board[j][i])
+            }
+        }
+    }
+    return true
 }
 
-function goodInside() {
+function goodInside(board) {
+    const boxCoord = [
+        [0,0], [0,1], [0,2],
+        [1,0], [1,1], [1,2],
+        [2,0], [2,1], [2,2]
+    ]
 
+    for(let y = 0; y < 9 ; y+=3){
+        for (let x = 0; x < 9; x+=3) {
+            let current = []
+            for (let j = 0; j < 9; j++) {
+                let coordinates = [...boxCoord[j]]
+                coordinates[0] += y
+                coordinates[1] += x
+                if(current.includes((board[coordinates[0]][coordinates[1]]))){
+                    return false
+                } else if(board[coordinates[0]][coordinates[1]] != null) {
+                    current.push(board[coordinates[0]][coordinates[1]])
+                }
+            }
+        }
+    }
+    return true
 }
+
+//console.log(solve(alpha))
