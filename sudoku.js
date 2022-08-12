@@ -43,35 +43,36 @@ const bd_f = [
 ]
 
 function solve(board) {
-    if(solved(board)) {
+    if (solved(board)) {
         return board
-
-    } else {
-        const options = nextBoards(board)
-        const validBoards = keepValidOnly(options)
+    }
+    else {
+        const possibilities = nextBoards(board)
+        const validBoards = keepValid(possibilities)
         return findSolution(validBoards)
     }
 }
 
-function findSolution(boards) {
-    if(boards.length < 1) {
+function findSolution(boards){
+    if (boards.length < 1){
         return false
-    } else {
-        //Backtrack search
-        let frst = boards.shift()
-        let tryPath = solve(frst)
-        if(tryPath !== false) {
+    }
+    else {
+        const first = boards.shift();
+        const tryPath = solve(first)
+        if (tryPath != false){
             return tryPath
-        } else { // Abandon and move on to next board
+        }
+        else{
             return findSolution(boards)
         }
     }
 }
 
-function solved(board) {
-    for(let i = 0 ; i < 9 ; i++) {
-        for(let j = 0 ; j < 9 ; j++) {
-            if(board[i][j] === null) {
+function solved(board){
+    for (let i = 0; i < 9; i++){
+        for (let j = 0; j < 9; j++){
+            if (board[i][j] == null){
                 return false
             }
         }
@@ -79,87 +80,95 @@ function solved(board) {
     return true
 }
 
-function nextBoards(board) {
-    let f = []
-    const empty = findEmptySqr(board)
-    if(empty !== undefined) {
-        const y = empty[0]
-        const x = empty[1]
-        for(let i = 1 ; i <= 9 ; i++) {
-            let newBoard = [...board]
-            let row = [...newBoard[y]]
+function nextBoards(board){
+    const foo = [];
+    const firstEmpty = findEmptySqr(board)
+    if (firstEmpty != undefined){
+        const y = firstEmpty[0]
+        const x = firstEmpty[1]
+        for (let i = 1; i <= 9; i++){
+            const newBoard = [...board];
+            const row = [...newBoard[y]];
             row[x] = i
             newBoard[y] = row
-            f.push(newBoard)
+            foo.push(newBoard)
         }
     }
-    return f
+    return foo
 }
 
-function findEmptySqr(board) {
-    for(let i = 0 ; i < 9 ; i++) {
-        for(let j = 0 ; j < 9 ; j++) {
-            if(board[i][j] === null) {
-                return [i,j]
+function findEmptySqr(board){
+    for (let i = 0; i < 9; i++){
+        for (let j = 0; j < 9; j++){
+            if (board[i][j] == null) {
+                return [i, j]
             }
         }
     }
 }
 
-function keepValidOnly(boards) {
-    return boards.filter((b) => validBoard(b))
+function keepValid(boards){
+    const res = [];
+    for (let i = 0; i < boards.length; i++){
+        if (validBoard(boards[i])){
+            res.push(boards[i])
+        }
+    }
+    return res
 }
 
-function validBoard(board) {
+function validBoard(board){
     return goodRow(board) && goodCol(board) && goodInside(board)
 }
 
-function goodRow(board) {
-    for(let i = 0; i < 9 ; i++){
-        let current = []
-        for (let j = 0; i < 9; j++) {
-            if(current.includes(board[i][j])) {
+function goodRow(board){
+    for (let i = 0; i < 9; i++){
+        const cur = [];
+        for (let j = 0; j < 9; j++){
+            if (cur.includes(board[i][j])){
                 return false
-            } else if (board[i][j] != null){
-                current.push(board[i][j])
+            }
+            else if (board[i][j] != null){
+                cur.push(board[i][j])
             }
         }
     }
     return true
 }
 
-function goodCol(board) {
-    for(let i = 0; i < 9 ; i++){
-        let current = []
-        for (let j = 0; j < 9; j++) {
-            if(current.includes(board[j][i])) {
+function goodCol(board){
+    for (let i = 0; i < 9; i++){
+        const cur = [];
+        for (let j = 0; j < 9; j++){
+            if (cur.includes(board[j][i])){
                 return false
-            } else if (board[j][i] != null){
-                current.push(board[j][i])
+            }
+            else if (board[j][i] != null){
+                cur.push(board[j][i])
             }
         }
     }
     return true
 }
 
-function goodInside(board) {
+
+function goodInside(board){
     const boxCoord = [
-        [0,0], [0,1], [0,2],
-        [1,0], [1,1], [1,2],
-        [2,0], [2,1], [2,2]
-    ]
-
-    for(let y = 0; y < 9 ; y+=3){
-        for (let x = 0; x < 9; x+=3) {
-            let current = []
-            for (let j = 0; j < 9; j++) {
-                let coordinates = [...boxCoord[j]]
-                coordinates[0] += y
-                coordinates[1] += x
-                if(current.includes((board[coordinates[0]][coordinates[1]]))){
+        [0, 0], [0, 1], [0, 2],
+        [1, 0], [1, 1], [1, 2],
+        [2, 0], [2, 1], [2, 2]]
+    for (let y = 0; y < 9; y += 3){
+        for (let x = 0; x < 9; x += 3){
+            let cur = [];
+            for (let i = 0; i < 9; i++){
+                const coords = [...boxCoord[i]];
+                coords[0] += y
+                coords[1] += x
+                if (cur.includes(board[coords[0]][coords[1]])){
                     return false
-                } else if(board[coordinates[0]][coordinates[1]] != null) {
-                    current.push(board[coordinates[0]][coordinates[1]])
+                }
+                else if (board[coords[0]][coords[1]] != null){
+                    cur.push(board[coords[0]][coords[1]])
                 }
             }
         }
@@ -167,4 +176,4 @@ function goodInside(board) {
     return true
 }
 
-//console.log(solve(alpha))
+console.log(solve(bd_easy))
