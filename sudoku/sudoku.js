@@ -117,19 +117,17 @@ function keepValid(boards){
     return res
 }
 
-function validBoard(board){
-    return goodRow(board) && goodCol(board) && goodInside(board)
-}
+
 
 function goodRow(board){
     for (let i = 0; i < 9; i++){
-        const cur = [];
+        const current = [];
         for (let j = 0; j < 9; j++){
-            if (cur.includes(board[i][j])){
+            if (current.includes(board[i][j])){
                 return false
             }
             else if (board[i][j] != null){
-                cur.push(board[i][j])
+                current.push(board[i][j])
             }
         }
     }
@@ -138,13 +136,13 @@ function goodRow(board){
 
 function goodCol(board){
     for (let i = 0; i < 9; i++){
-        const cur = [];
+        const current = [];
         for (let j = 0; j < 9; j++){
-            if (cur.includes(board[j][i])){
+            if (current.includes(board[j][i])){
                 return false
             }
             else if (board[j][i] != null){
-                cur.push(board[j][i])
+                current.push(board[j][i])
             }
         }
     }
@@ -176,4 +174,8 @@ function goodInside(board){
     return true
 }
 
-console.log(solve(bd_easy))
+function validBoard(board){
+    return goodRow(board) && goodCol(board) && goodInside(board)
+}
+
+console.log(solve(bd_f))

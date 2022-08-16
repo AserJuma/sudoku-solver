@@ -2,10 +2,115 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Solver</title>
+    <link href="style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>HELLO </h1>
-<script src="sudoku.js"></script>
+<h2>Sudoku Solver</h2>
+
+<table>
+    <tr>
+        <td> <input id="1" type="number" min="1" max="9"> </td>
+        <td> <input id="2" type="number" min="1" max="9"> </td>
+        <td> <input id="3" type="number" min="1" max="9"> </td>
+        <td> <input id="4" type="number" min="1" max="9"> </td>
+        <td> <input id="5" type="number" min="1" max="9"> </td>
+        <td> <input id="6" type="number" min="1" max="9"> </td>
+        <td> <input id="7" type="number" min="1" max="9"> </td>
+        <td> <input id="8" type="number" min="1" max="9"> </td>
+        <td> <input id="9" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="10" type="number" min="1" max="9"> </td>
+        <td> <input id="11" type="number" min="1" max="9"> </td>
+        <td> <input id="12" type="number" min="1" max="9"> </td>
+        <td> <input id="13" type="number" min="1" max="9"> </td>
+        <td> <input id="14" type="number" min="1" max="9"> </td>
+        <td> <input id="15" type="number" min="1" max="9"> </td>
+        <td> <input id="16" type="number" min="1" max="9"> </td>
+        <td> <input id="17" type="number" min="1" max="9"> </td>
+        <td> <input id="18" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="19" type="number" min="1" max="9"> </td>
+        <td> <input id="20" type="number" min="1" max="9"> </td>
+        <td> <input id="21" type="number" min="1" max="9"> </td>
+        <td> <input id="22" type="number" min="1" max="9"> </td>
+        <td> <input id="23" type="number" min="1" max="9"> </td>
+        <td> <input id="24" type="number" min="1" max="9"> </td>
+        <td> <input id="25" type="number" min="1" max="9"> </td>
+        <td> <input id="26" type="number" min="1" max="9"> </td>
+        <td> <input id="27" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="28" type="number" min="1" max="9"> </td>
+        <td> <input id="29" type="number" min="1" max="9"> </td>
+        <td> <input id="30" type="number" min="1" max="9"> </td>
+        <td> <input id="31" type="number" min="1" max="9"> </td>
+        <td> <input id="32" type="number" min="1" max="9"> </td>
+        <td> <input id="33" type="number" min="1" max="9"> </td>
+        <td> <input id="34" type="number" min="1" max="9"> </td>
+        <td> <input id="35" type="number" min="1" max="9"> </td>
+        <td> <input id="36" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="37" type="number" min="1" max="9"> </td>
+        <td> <input id="38" type="number" min="1" max="9"> </td>
+        <td> <input id="39" type="number" min="1" max="9"> </td>
+        <td> <input id="40" type="number" min="1" max="9"> </td>
+        <td> <input id="41" type="number" min="1" max="9"> </td>
+        <td> <input id="42" type="number" min="1" max="9"> </td>
+        <td> <input id="43" type="number" min="1" max="9"> </td>
+        <td> <input id="44" type="number" min="1" max="9"> </td>
+        <td> <input id="45" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="46" type="number" min="1" max="9"> </td>
+        <td> <input id="47" type="number" min="1" max="9"> </td>
+        <td> <input id="48" type="number" min="1" max="9"> </td>
+        <td> <input id="49" type="number" min="1" max="9"> </td>
+        <td> <input id="50" type="number" min="1" max="9"> </td>
+        <td> <input id="51" type="number" min="1" max="9"> </td>
+        <td> <input id="52" type="number" min="1" max="9"> </td>
+        <td> <input id="53" type="number" min="1" max="9"> </td>
+        <td> <input id="54" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="55" type="number" min="1" max="9"> </td>
+        <td> <input id="56" type="number" min="1" max="9"> </td>
+        <td> <input id="57" type="number" min="1" max="9"> </td>
+        <td> <input id="58" type="number" min="1" max="9"> </td>
+        <td> <input id="59" type="number" min="1" max="9"> </td>
+        <td> <input id="60" type="number" min="1" max="9"> </td>
+        <td> <input id="61" type="number" min="1" max="9"> </td>
+        <td> <input id="62" type="number" min="1" max="9"> </td>
+        <td> <input id="63" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="64" type="number" min="1" max="9"> </td>
+        <td> <input id="65" type="number" min="1" max="9"> </td>
+        <td> <input id="67" type="number" min="1" max="9"> </td>
+        <td> <input id="68" type="number" min="1" max="9"> </td>
+        <td> <input id="69" type="number" min="1" max="9"> </td>
+        <td> <input id="70" type="number" min="1" max="9"> </td>
+        <td> <input id="71" type="number" min="1" max="9"> </td>
+        <td> <input id="72" type="number" min="1" max="9"> </td>
+        <td> <input id="73" type="number" min="1" max="9"> </td>
+    </tr>
+    <tr>
+        <td> <input id="74" type="number" min="1" max="9"> </td>
+        <td> <input id="75" type="number" min="1" max="9"> </td>
+        <td> <input id="76" type="number" min="1" max="9"> </td>
+        <td> <input id="77" type="number" min="1" max="9"> </td>
+        <td> <input id="78" type="number" min="1" max="9"> </td>
+        <td> <input id="79" type="number" min="1" max="9"> </td>
+        <td> <input id="80" type="number" min="1" max="9"> </td>
+        <td> <input id="81" type="number" min="1" max="9"> </td>
+        <td> <input id="82" type="number" min="1" max="9"> </td>
+    </tr>
+</table>
+
+<script src="sudoku/sudoku.js"></script>
 </body>
 </html>
