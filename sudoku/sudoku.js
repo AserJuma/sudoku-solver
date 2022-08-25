@@ -100,17 +100,42 @@ function selectTile() {
         let coords = this.id.split(",")
         let x = parseInt(coords[0]);
         let y = parseInt(coords[1]);
-        console.log(x + "," + y)
+        //console.log(x + "," + y)
     }
 
 }
 
+
 function Initiate() {
+    let startingBoard = [[]];
+    let board = document.getElementById("boardArea")
+    //let f = 0
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
-            // Connect HTML board with logic
+            const val = document.getElementById(i + "," + j).innerText
+            //console.log(val)
+            if (val == "" || val === undefined || val === null) {
+                startingBoard[i][j] = null;
+            } else {
+                startingBoard[i][j] = Number(val);
+            }
+            if (i % 9 == 0 && i < 81) {
+                startingBoard.push([])
+                //console.log("entered")
+                //f++
+            }
         }
     }
+    startingBoard.pop()
+    console.log(startingBoard)
+    const inputValid = validBoard(startingBoard)
+    if (!inputValid) {
+        inputIsInvalid()
+    } else {
+        const answer = solve(startingBoard)
+        Update(answer, inputValid)
+    }
+
 }
 
 function solve(board) {
@@ -225,7 +250,8 @@ function goodInside(board){
     const boxCoord = [
         [0, 0], [0, 1], [0, 2],
         [1, 0], [1, 1], [1, 2],
-        [2, 0], [2, 1], [2, 2]]
+        [2, 0], [2, 1], [2, 2]
+    ]
     for (let y = 0; y < 9; y += 3){
         for (let x = 0; x < 9; x += 3){
             let cur = [];
@@ -233,6 +259,7 @@ function goodInside(board){
                 const coords = [...boxCoord[i]];
                 coords[0] += y
                 coords[1] += x
+
                 if (cur.includes(board[coords[0]][coords[1]])){
                     return false;
                 }
@@ -249,64 +276,12 @@ function validBoard(board){
     return goodRow(board) && goodCol(board) && goodInside(board);
 }
 
-//console.log(solve(bd_f))
 
-/*
-document.addEventListener('click', (e) => {
-    console.log(e.target.value)
-})*/
-
-
-function start() {
-    var startingBoard = [[]];
-    var j = 0;
-    for (let i = 1; i <= 81; i++) {
-        const val = document.getElementById(String(i)).value
-        if (val == null) {
-            startingBoard[j].push(null)
-        } else {
-            startingBoard[j].push(Number(val))
-        }
-        if (i % 9 == 0 && i < 81) {
-            startingBoard.push([])
-            j++
-        }
-    }
-    console.log(startingBoard)/*
-    const inputValid = validBoard(startingBoard)
-    if (!inputValid) {
-        inputIsInvalid()
-    } else {
-        const answer = solve(startingBoard)
-        Update(answer, inputValid)
-    }
-*/
-}
 
 function inputIsInvalid(){
-    for (let i = 0; i <= 9; i++) {
-        document.getElementById("row " + String(i)).innerHTML = "The Board is invalid"
-    }
+    console.log("board invalid")
 }
 
 function Update(board) {
-    if (board == false) {
-        for(let i = 1; i <= 9 ; i++) {
-            document.getElementById("row " + String(i)).innerHTML = "No Solution Exists"
-        }
-    }
-    else {
-        for (let j = 0; j <= 9; j++) {
-            let row =""
-            for (let i = 0; i < 9; i++) {
-                if(row == "") {
-                    row = row + String(board[i - 1][j])
-                }
-                else {
-                    row = row + "\xa0\xa0\xa0\xa0\xa0\xa0\xa0" + String(board[i - 1][j])
-                }
-            }
-            document.getElementById("row " + String(j)).innerHTML = row
-        }
-    }
+    console.log(board)
 }
