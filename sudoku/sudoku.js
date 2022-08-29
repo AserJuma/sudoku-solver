@@ -59,7 +59,7 @@ function setBoard() {
         number.innerText = i
         number.addEventListener("click", selectNumber)
         number.classList.add("number")
-        document.getElementById("digits").appendChild(number)
+        document.getElementById("digits-area").appendChild(number)
     }
 
     for (let i = 0; i < 9; i++) {
@@ -78,7 +78,7 @@ function setBoard() {
             }
             tile.addEventListener("click", selectTile)
             tile.classList.add("tile")
-            document.getElementById("boardArea").append(tile)
+            document.getElementById("board-area").append(tile)
         }
     }
 }
@@ -86,6 +86,14 @@ function setBoard() {
 function selectNumber() {
     if(numberSelected != null) {
         numberSelected.classList.remove("number-selected")
+    }
+    numberSelected = this
+    numberSelected.classList.add("number-selected")
+}
+
+function selectDifficulty() {
+    if(diffDelected != null) {
+        numberSelected.classList.add("number-selected")
     }
     numberSelected = this
     numberSelected.classList.add("number-selected")
@@ -101,6 +109,8 @@ function selectTile() {
         let x = parseInt(coords[0]);
         let y = parseInt(coords[1]);
         //console.log(x + "," + y)
+        tileSelected = this
+        tileSelected.classList.add("tile-selected")
     }
 
 }
@@ -108,21 +118,17 @@ function selectTile() {
 
 function Initiate() {
     let startingBoard = [[]];
-    let board = document.getElementById("boardArea")
-    //let f = 0
     for (let i = 0; i < 9; i++) {
         for (let j = 0; j < 9; j++) {
             const val = document.getElementById(i + "," + j).innerText
             //console.log(val)
             if (val == "" || val === undefined || val === null) {
-                startingBoard[i][j] = null;
+                startingBoard[i][j] = null
             } else {
-                startingBoard[i][j] = Number(val);
+                startingBoard[i][j] = Number(val)
             }
             if (i % 9 == 0 && i < 81) {
                 startingBoard.push([])
-                //console.log("entered")
-                //f++
             }
         }
     }
@@ -197,7 +203,7 @@ function findEmptySqr(board){
     for (let i = 0; i < 9; i++){
         for (let j = 0; j < 9; j++){
             if (board[i][j] == null) {
-                return [i, j];
+                return [i, j]
             }
         }
     }
@@ -207,7 +213,7 @@ function keepValid(boards){
     const res = [];
     for (let i = 0; i < boards.length; i++){
         if (validBoard(boards[i])){
-            res.push(boards[i]);
+            res.push(boards[i])
         }
     }
     return res
@@ -220,10 +226,10 @@ function goodRow(board){
         const current = [];
         for (let j = 0; j < 9; j++){
             if (current.includes(board[i][j])){
-                return false;
+                return false
             }
             else if (board[i][j] != null){
-                current.push(board[i][j]);
+                current.push(board[i][j])
             }
         }
     }
@@ -235,10 +241,10 @@ function goodCol(board){
         const current = [];
         for (let j = 0; j < 9; j++){
             if (current.includes(board[j][i])){
-                return false;
+                return false
             }
             else if (board[j][i] != null){
-                current.push(board[j][i]);
+                current.push(board[j][i])
             }
         }
     }
@@ -254,17 +260,17 @@ function goodInside(board){
     ]
     for (let y = 0; y < 9; y += 3){
         for (let x = 0; x < 9; x += 3){
-            let cur = [];
+            let cur = []
             for (let i = 0; i < 9; i++){
                 const coords = [...boxCoord[i]];
                 coords[0] += y
                 coords[1] += x
 
                 if (cur.includes(board[coords[0]][coords[1]])){
-                    return false;
+                    return false
                 }
                 else if (board[coords[0]][coords[1]] != null){
-                    cur.push(board[coords[0]][coords[1]]);
+                    cur.push(board[coords[0]][coords[1]])
                 }
             }
         }
@@ -273,15 +279,20 @@ function goodInside(board){
 }
 
 function validBoard(board){
-    return goodRow(board) && goodCol(board) && goodInside(board);
+    return goodRow(board) && goodCol(board) && goodInside(board)
 }
 
 
 
 function inputIsInvalid(){
-    console.log("board invalid")
+    document.getElementById("error-area").innerText = "Invalid Board"
+    /*console.log("Board invalid")*/
 }
 
 function Update(board) {
-    console.log(board)
+    for (let i = 0; i < 9; i++) {
+        for (let j = 0; j < 9; j++) {
+            document.getElementById(i + "," + j).innerText = board[i][j]
+        }
+    }
 }

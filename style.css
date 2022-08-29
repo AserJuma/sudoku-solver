@@ -1,17 +1,21 @@
-body {
-    font-family: Arial;
+.line {
+    width: 50%;
+    margin:  0 auto;
+    display: flex;
+}
+
+#error-area {
+    color: red;
+    text-align: center;
+
+    font-weight: bold;
+}
+
+#title {
     text-align: center;
 }
 
-hr {
-    width: 50%
-}
-
-#errors {
-    color: red;
-}
-
-#boardArea {
+#board-area {
     width: 450px;
     height: 450px;
 
@@ -20,7 +24,7 @@ hr {
     flex-wrap: wrap;
 }
 
-#digits {
+#digits-area {
     width: 450px;
     height: 50px;
 
@@ -40,6 +44,7 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: unset;
 }
 
 .number {
@@ -54,10 +59,15 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: unset;
 }
 
 .number-selected {
     background-color: lightgray;
+}
+
+.tile-selected {
+    background-color: darkgrey;
 }
 
 .tile-start {
@@ -71,3 +81,25 @@ hr {
 .vert-line {
     border-right: 1px solid black;
 }
+
+.btns {
+    margin: 2px 2px 2px 2px;
+    justify-content: center;
+    text-align: center;
+}
+
+input[type=radio]
+{
+    position: absolute;
+    clip: rect(0,0,0,0);
+    pointer-events: none;
+
+}
+
+#btn-area, #new-game {
+    margin: 0 auto;
+    display: flex;
+    width: 40%;
+    justify-content: center;
+}
+
