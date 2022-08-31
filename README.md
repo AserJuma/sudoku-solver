@@ -5,4 +5,5 @@
 <h1> Work in progress </h1>
 
 <h2> Demo so far: https://htmlpreview.github.io/?https://github.com/AserJuma/sudoku-solver/blob/0533a923e24faa4ce49b8ced671c23d5d1efc194/index.html </h2>
-Refresh once or twice
+Refresh page once or twice
+input some numbers and hit solve, ignore above buttons
