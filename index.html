@@ -8,43 +8,51 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-<h1 id="title">Sudoku Solver</h1>
+
+<script src="sudoku/sudoku.js"></script>
+
+<h1 id="title"></h1>
 <hr class="line">
+<div id = "btn-area"></div>
+<!--
 <form method="post" style="display: inline;">
 <div class="btn-group btn-group-toggle" data-toggle="buttons" id="btn-area">
     <label class="btn btn-sm btn-light active">
-        <input id="Easy" type="radio" value="easy" checked>
+        <input id="Easy" type="radio" value="Easy" checked>
         Easy
     </label>
     <label class="btn btn-sm btn-light">
-        <input id="Intermediate" type="radio" value="inte">
+        <input id="Intermediate" type="radio" value="Intermediate">
         Intermediate
     </label>
     <label class="btn btn-sm btn-light">
-        <input id="Advanced" type="radio" value="adva">
+        <input id="Advanced" type="radio" value="Advanced">
         Advanced
     </label>
     <label class="btn btn-sm btn-light">
-        <input id="Expert" type="radio" value="expe">
+        <input id="Expert" type="radio" value="Expert">
         Expert
     </label>
-    <button class="btn btn-sm btn-secondary" type="submit" id="new-game"> New Game </button>
+    <button class="btn btn-sm btn-secondary" id="new-game"> New Game </button>
     </div>
 </form>
-<hr class="line">
+-->
 <br>
 <div id = "board-area"> </div>
 <br>
 <div id="digits-area"></div>
 <br>
 
+
+<div id="answer-area"></div>
+<br>
+
+
+
 <div class="btns">
     <button onclick="Initiate()" class="btn btn-primary btn-lg"> Solve </button>
 </div>
-<div id="answer-area"></div>
-<br>
-<div id="error-area"></div>
 
-<script src="sudoku/sudoku.js"></script>
+<div id="error-area"></div>
 </body>
 </html>
